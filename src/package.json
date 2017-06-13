@@ -1,0 +1,26 @@
+{
+  "name": "transducers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.ts",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deniskyashif/transducers.git"
+  },
+  "keywords": [
+    "finite-automata",
+    "transducers"
+  ],
+  "author": "deniskyashif",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deniskyashif/transducers/issues"
+  },
+  "homepage": "https://github.com/deniskyashif/transducers#readme",
+  "devDependencies": {
+    "jasmine": "^2.6.0"
+  }
+}
