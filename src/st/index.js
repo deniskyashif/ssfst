@@ -3,5 +3,5 @@
 module.exports = {
     State: require('./state'),
     Path: require('./path'),
-    MAST: require('./mast')
+    SubsequentialTransducer: require('./subsequential-transducer')
 };
