@@ -8,4 +8,11 @@ describe('Subsequential Transducer: State Tests', () => {
         expect(new State()).toEqual(jasmine.any(State));
     });
 
+    it('States should have unique IDs', () => {
+        const s1 = new State();
+        const s2 = new State();
+
+        expect(s1.id).not.toEqual(s2.id);
+    });
+
 });
