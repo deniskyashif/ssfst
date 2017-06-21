@@ -13,11 +13,11 @@ function main() {
     ];
 
     const transducer = new SSFST(dict);
-    console.log(transducer.translate('ab'));
-    console.log(transducer.translate('bab'));
-    console.log(transducer.translate('bbbc'));
-    console.log(transducer.translate('aba'));
-    console.log(transducer.translate('www'));
+    console.log(transducer.process('ab'));
+    console.log(transducer.process('bab'));
+    console.log(transducer.process('bbbc'));
+    console.log(transducer.process('aba'));
+    console.log(transducer.process('www'));
 }
 
 main();

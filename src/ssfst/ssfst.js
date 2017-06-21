@@ -48,7 +48,7 @@ module.exports = class SSFST {
         });
     }
 
-    translate(word) {
+    process(word) {
         let output = '';
         let state = this.startState;
 
