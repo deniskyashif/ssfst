@@ -4,8 +4,8 @@
 
 'use strict';
 
-const State = require('./state.js');
-const Path = require('./path.js');
+const State = require('./state');
+const Transition = require('./transition');
 
 module.exports = class SSFST {
     constructor(dict) {

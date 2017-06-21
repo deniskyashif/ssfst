@@ -1,6 +1,6 @@
 'use strict';
 
-const ST = require('./st').SubsequentialTransducer;
+const ST = require('./ssfst').SSFST;
 
 async function main() {
     

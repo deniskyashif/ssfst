@@ -2,6 +2,6 @@
 
 module.exports = {
     State: require('./state'),
-    Path: require('./path'),
+    Transition: require('./transition'),
     SSFST: require('./ssfst')
 };
