@@ -23,5 +23,8 @@
     "homepage": "https://github.com/deniskyashif/transducers#readme",
     "devDependencies": {
         "jasmine": "^2.6.0"
+    },
+    "dependencies": {
+        "iron-node": "^3.0.19"
     }
 }
