@@ -7,36 +7,96 @@
 const State = require('./state');
 
 module.exports = class SSFST {
-    
-    constructor(dict) {
+
+    constructor(alphabet, dict) {
         if (!dict) {
             throw new Error('The input dictionary should be defined.');
         }
 
-        this.createTrie(dict, this.transitions);
+        this.startState = this.createTrie(dict);
+        this.reduce(alphabet, this.startState);
+    }
+
+    complementState(triple, queue, alphabet) {
+        let { state, prev, output } = triple;
+
+        state.isFinal = true;
+        state.output = output + prev.output; //TODO: Check
+
+        alphabet.forEach(symbol => {
+            const transition = state.processTransition(symbol);
+            const prevTransition = prev.processTransition(symbol);
+
+            if (!transition) {
+                state.addTransition(prevTransition.next,
+                                    symbol,
+                                    output + prevTransition.output); //TODO: Check
+            } else {
+                if (transition.next.isFinal) {
+                    queue.push({
+                        state: transition.next,
+                        prev: this.startState,
+                        output: transition.next.output
+                    });
+                } else {
+                    queue.push({
+                        state: transition.next,
+                        prev: prevTransition.next,
+                        output: output + prevTransition.output //TODO: Check
+                    });
+
+                }
+            }
+        });
+    }
+
+    reduce(alphabet, startState) {
+        const queue = [];
+        startState.isFinal = true;
+        startState.output = '';
+
+        alphabet.forEach(symbol => {
+            const transition = startState.processTransition(symbol);
+
+            if (!transition) {
+                startState.addTransition(startState, symbol, symbol);
+            } else {
+                queue.push({
+                    state: transition.next,
+                    prev: startState,
+                    output: transition.next.isFinal
+                        ? transition.next.output
+                        : symbol
+                });
+            }
+        });
+
+        while(queue.length) {
+            let triple = queue.shift();
+            this.complementState(triple, queue, alphabet);
+        }
     }
 
     createTrie(dict) {
-        this.startState = new State();
+        const startState = new State();
 
         dict.forEach((entry) => {
-            
-            const word = entry.input;            
-            let state = this.startState;
+            const word = entry.input;
+            let state = startState;
             let skipIndex = 0;
 
-            while(true) {
+            while (true) {
                 let transition = state.processTransition(word[skipIndex]);
 
                 if (!transition) {
                     break;
                 }
 
-                state = transition.nextState;
+                state = transition.next;
                 skipIndex++;
             }
 
-            for(; skipIndex < word.length; skipIndex++) {
+            for (; skipIndex < word.length; skipIndex++) {
                 let newState = new State();
                 state.addTransition(newState, word[skipIndex], '');
                 state = newState;
@@ -44,26 +104,33 @@ module.exports = class SSFST {
 
             state.isFinal = true;
             state.output = entry.output;
-
         });
+
+        return startState;
     }
 
     process(word) {
         let output = '';
         let state = this.startState;
 
-        for(let i = 0; i < word.length; i++) {
+        for (let i = 0; i < word.length; i++) {
             let transition = state.processTransition(word[i]);
-            
+
             if (!transition) {
-                return { accepted: false, output: output };
+                return {
+                    accepted: false,
+                    output: output
+                };
             }
 
             output += transition.output;
-            state = transition.nextState;
+            state = transition.next;
         }
 
-        return { accepted: state.isFinal, output: output + state.output };
+        return {
+            accepted: state.isFinal,
+            output: output + state.output
+        };
     }
 
 };

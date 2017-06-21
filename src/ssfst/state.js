@@ -8,10 +8,10 @@ module.exports = class State {
         this.output = '';
     }
 
-    addTransition(state, input, output) {
+    addTransition(nextState, input, output) {
         this.transitions[input] = {
             output: output,
-            nextState: state
+            next: nextState
         };
     }
 

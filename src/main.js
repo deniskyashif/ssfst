@@ -3,6 +3,8 @@
 const SSFST = require('./ssfst').SSFST;
 
 function main() {
+    const alphabet = ['a', 'b', 'c'];
+
     const dict = [
         { input: 'ab', output: 'xx' },
         { input: 'abc', output: 'xyy' },
@@ -12,7 +14,8 @@ function main() {
         { input: 'bbbc', output: 'yzz' }
     ];
 
-    const transducer = new SSFST(dict);
+    const transducer = new SSFST(alphabet, dict);
+
     console.log(transducer.process('ab'));
     console.log(transducer.process('bab'));
     console.log(transducer.process('bbbc'));
