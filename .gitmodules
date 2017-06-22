@@ -1,0 +1,3 @@
+[submodule "datasets/cmudict"]
+	path = datasets/cmudict
+	url = https://github.com/cmusphinx/cmudict.git
