@@ -1,6 +1,6 @@
 'use strict';
 
-const State = require('./../../ssfst').State;
+const State = require('./../../ssfst/state');
 
 describe('Subsequential Transducer: State Tests', () => {
     

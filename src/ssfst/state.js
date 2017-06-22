@@ -1,21 +1,20 @@
 'use strict';
 
+const Transition = require('./transition');
+
 module.exports = class State {
-    constructor() {
+    constructor(isFinal = false) {
         this.id = Symbol(this);
-        this.isFinal = false;
-        this.transitions = {};
+        this.isFinal = isFinal;
+        this.transitions = new Map();
         this.output = '';
     }
 
     addTransition(nextState, input, output) {
-        this.transitions[input] = {
-            output: output,
-            next: nextState
-        };
+        this.transitions.set(input, new Transition(output, nextState));
     }
 
     processTransition(input) {
-        return this.transitions[input];
+        return this.transitions.get(input);
     }
 };

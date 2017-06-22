@@ -1,6 +1,6 @@
 'use strict';
 
-const SSFST = require('./../../ssfst').SSFST;
+const SSFST = require('./../../ssfst/ssfst');
 
 describe('Subsequential Finite State Transducer Tests', () => {
 

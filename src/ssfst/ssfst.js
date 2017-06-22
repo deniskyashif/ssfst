@@ -9,19 +9,19 @@ const State = require('./state');
 module.exports = class SSFST {
 
     constructor(alphabet, dict) {
-        if (!dict) {
-            throw new Error('The input dictionary should be defined.');
+        if (!(dict && alphabet)) {
+            throw new Error('The input dictionary and alphabet should be defined.');
         }
 
         this.startState = this.createTrie(dict);
-        this.reduce(alphabet, this.startState);
+        this.performCanonicalLmlsExtension(alphabet, this.startState);
     }
 
     complementState(triple, queue, alphabet) {
-        let { state, prev, output } = triple;
+        const { state, prev, output } = triple;
 
         state.isFinal = true;
-        state.output = output + prev.output; //TODO: Check
+        state.output = output + prev.output;
 
         alphabet.forEach(symbol => {
             const transition = state.processTransition(symbol);
@@ -30,7 +30,7 @@ module.exports = class SSFST {
             if (!transition) {
                 state.addTransition(prevTransition.next,
                                     symbol,
-                                    output + prevTransition.output); //TODO: Check
+                                    output + prevTransition.output);
             } else {
                 if (transition.next.isFinal) {
                     queue.push({
@@ -42,15 +42,14 @@ module.exports = class SSFST {
                     queue.push({
                         state: transition.next,
                         prev: prevTransition.next,
-                        output: output + prevTransition.output //TODO: Check
+                        output: output + prevTransition.output
                     });
-
                 }
             }
         });
     }
 
-    reduce(alphabet, startState) {
+    performCanonicalLmlsExtension(alphabet, startState) {
         const queue = [];
         startState.isFinal = true;
         startState.output = '';
