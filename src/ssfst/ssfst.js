@@ -13,7 +13,7 @@ module.exports = class SSFST {
             throw new Error('The input dictionary and alphabet should be defined.');
         }
 
-        this.startState = this.createTrie(dict);
+        this.startState = this.constructTrie(dict);
         this.performCanonicalLmlsExtension(alphabet, this.startState);
     }
 
@@ -23,7 +23,7 @@ module.exports = class SSFST {
         state.isFinal = true;
         state.output = output + prev.output;
 
-        alphabet.forEach(symbol => {
+        for (let symbol of alphabet) {
             const transition = state.processTransition(symbol);
             const prevTransition = prev.processTransition(symbol);
 
@@ -46,7 +46,7 @@ module.exports = class SSFST {
                     });
                 }
             }
-        });
+        }
     }
 
     performCanonicalLmlsExtension(alphabet, startState) {
@@ -54,7 +54,7 @@ module.exports = class SSFST {
         startState.isFinal = true;
         startState.output = '';
 
-        alphabet.forEach(symbol => {
+        for (let symbol of alphabet) {
             const transition = startState.processTransition(symbol);
 
             if (!transition) {
@@ -68,7 +68,7 @@ module.exports = class SSFST {
                         : symbol
                 });
             }
-        });
+        }
 
         while(queue.length) {
             let triple = queue.shift();
@@ -76,10 +76,10 @@ module.exports = class SSFST {
         }
     }
 
-    createTrie(dict) {
+    constructTrie(dict) {
         const startState = new State();
 
-        dict.forEach((entry) => {
+        for(let entry of dict ) {
             const word = entry.input;
             let state = startState;
             let skipIndex = 0;
@@ -103,7 +103,7 @@ module.exports = class SSFST {
 
             state.isFinal = true;
             state.output = entry.output;
-        });
+        }
 
         return startState;
     }

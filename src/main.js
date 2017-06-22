@@ -1,6 +1,11 @@
 'use strict';
 
-const SSFST = require('./ssfst').SSFST;
+const SSFST = require('./ssfst/ssfst');
+const readline = require('readline');
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
 function main() {
     const alphabet = ['a', 'b', 'c'];
@@ -15,12 +20,12 @@ function main() {
     ];
 
     const transducer = new SSFST(alphabet, dict);
+    console.info(`Transducer constructed. \r\nInput alphabet: ${alphabet}`);
 
-    console.log(transducer.process('ab'));
-    console.log(transducer.process('bab'));
-    console.log(transducer.process('bbbc'));
-    console.log(transducer.process('aba'));
-    console.log(transducer.process('www'));
+
+    rl.on('line', (input) => {
+        console.log(transducer.process(input));
+    });
 }
 
 main();
