@@ -4,7 +4,9 @@
     "description": "",
     "main": "main.js",
     "scripts": {
-        "start": "node main",
+        "start": "node main --default",
+        "dict": "node main --cmu-dict",
+        "phones": "node main --cmu-phones",
         "test": "jasmine"
     },
     "repository": {

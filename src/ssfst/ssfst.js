@@ -15,6 +15,7 @@ module.exports = class SSFST {
 
         this.inputAlphabet = new Set();
         this.startState = new State();
+        this.states = [this.startState];
 
         this.constructTrie(dict);
         this.performCanonicalLmlsExtension();
@@ -95,6 +96,7 @@ module.exports = class SSFST {
                 let newState = new State();
                 let symbol = word[skipIndex];
 
+                this.states.push(newState);
                 state.addTransition(newState, symbol, '');
                 state = newState;
 
