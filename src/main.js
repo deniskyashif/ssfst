@@ -8,7 +8,6 @@ const rl = readline.createInterface({
 });
 
 function main() {
-    const alphabet = ['a', 'b', 'c'];
 
     const dict = [
         { input: 'ab', output: 'xx' },
@@ -19,13 +18,13 @@ function main() {
         { input: 'bbbc', output: 'yzz' }
     ];
 
-    const transducer = new SSFST(alphabet, dict);
-    console.info(`Transducer constructed. \r\nInput alphabet: ${alphabet}`);
+    const transducer = new SSFST(dict);
+    console.info(`Transducer constructed. \r\nInput alphabet: ${[...transducer.inputAlphabet]}`);
 
 
     rl.on('line', (input) => {
-        console.log(transducer.process(input));
+        console.log(transducer.process(input.trim()));
     });
-}
+};
 
 main();

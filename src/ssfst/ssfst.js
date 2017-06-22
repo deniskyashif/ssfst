@@ -8,29 +8,30 @@ const State = require('./state');
 
 module.exports = class SSFST {
 
-    constructor(alphabet, dict) {
-        if (!(dict && alphabet)) {
-            throw new Error('The input dictionary and alphabet should be defined.');
+    constructor(dict) {
+        if (!dict) {
+            throw new Error('The input dictionary should be defined.');
         }
 
-        this.startState = this.constructTrie(dict);
-        this.performCanonicalLmlsExtension(alphabet, this.startState);
+        this.inputAlphabet = new Set();
+        this.startState = new State();
+
+        this.constructTrie(dict);
+        this.performCanonicalLmlsExtension();
     }
 
-    complementState(triple, queue, alphabet) {
+    complementState(triple, queue) {
         const { state, prev, output } = triple;
 
         state.isFinal = true;
         state.output = output + prev.output;
 
-        for (let symbol of alphabet) {
+        for (let symbol of this.inputAlphabet) {
             const transition = state.processTransition(symbol);
             const prevTransition = prev.processTransition(symbol);
 
             if (!transition) {
-                state.addTransition(prevTransition.next,
-                                    symbol,
-                                    output + prevTransition.output);
+                state.addTransition(prevTransition.next, symbol, output + prevTransition.output);
             } else {
                 if (transition.next.isFinal) {
                     queue.push({
@@ -49,39 +50,34 @@ module.exports = class SSFST {
         }
     }
 
-    performCanonicalLmlsExtension(alphabet, startState) {
+    performCanonicalLmlsExtension() {
         const queue = [];
-        startState.isFinal = true;
-        startState.output = '';
+        this.startState.isFinal = true;
+        this.startState.output = '';
 
-        for (let symbol of alphabet) {
-            const transition = startState.processTransition(symbol);
+        for (let symbol of this.inputAlphabet) {
+            const transition = this.startState.processTransition(symbol);
 
             if (!transition) {
-                startState.addTransition(startState, symbol, symbol);
+                this.startState.addTransition(this.startState, symbol, symbol);
             } else {
                 queue.push({
                     state: transition.next,
-                    prev: startState,
-                    output: transition.next.isFinal
-                        ? transition.next.output
-                        : symbol
+                    prev: this.startState,
+                    output: transition.next.isFinal ? transition.next.output : symbol
                 });
             }
         }
 
-        while(queue.length) {
-            let triple = queue.shift();
-            this.complementState(triple, queue, alphabet);
+        while (queue.length) {
+            this.complementState(queue.shift(), queue, this.inputAlphabet);
         }
     }
 
     constructTrie(dict) {
-        const startState = new State();
-
-        for(let entry of dict ) {
+        for (let entry of dict) {
             const word = entry.input;
-            let state = startState;
+            let state = this.startState;
             let skipIndex = 0;
 
             while (true) {
@@ -97,23 +93,27 @@ module.exports = class SSFST {
 
             for (; skipIndex < word.length; skipIndex++) {
                 let newState = new State();
-                state.addTransition(newState, word[skipIndex], '');
+                let symbol = word[skipIndex];
+
+                state.addTransition(newState, symbol, '');
                 state = newState;
+
+                if (!this.inputAlphabet.has(symbol)) {
+                    this.inputAlphabet.add(symbol);
+                }
             }
 
             state.isFinal = true;
             state.output = entry.output;
         }
-
-        return startState;
     }
 
     process(word) {
         let output = '';
         let state = this.startState;
 
-        for (let i = 0; i < word.length; i++) {
-            let transition = state.processTransition(word[i]);
+        for (let symbol of word) {
+            let transition = state.processTransition(symbol);
 
             if (!transition) {
                 return {
@@ -131,5 +131,4 @@ module.exports = class SSFST {
             output: output + state.output
         };
     }
-
 };
