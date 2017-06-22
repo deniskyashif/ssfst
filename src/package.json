@@ -5,7 +5,7 @@
     "main": "main.js",
     "scripts": {
         "start": "node main --default",
-        "dict": "node main --cmu-dict",
+        "dict": "node --max_old_space_size=4096 --optimize_for_size main.js --cmu-dict",
         "phones": "node main --cmu-phones",
         "test": "jasmine"
     },

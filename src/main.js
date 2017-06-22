@@ -70,12 +70,11 @@ function printTransducerInfo(transducer) {
 async function main() {
     const dict = await {
         '--default': () => constructSampleDict(),
-        '--cmu-dict': () => constructCMUDictPhones('./../datasets/cmudict/cmudict.dict'),
+        '--cmu-dict': () => constructCMUDict('./../datasets/cmudict/cmudict.dict'),
         '--cmu-phones': () => constructCMUDictPhones('./../datasets/cmudict/cmudict.phones')
     }[process.argv[2]]();
 
     console.info(`Constructing the Transducer.`);
-
     const transducer = new SSFST(dict);
 
     printTransducerInfo(transducer);
