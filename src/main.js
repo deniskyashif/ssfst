@@ -74,7 +74,10 @@ async function main() {
         '--cmu-phones': () => constructCMUDictPhones('./../datasets/cmudict/cmudict.phones')
     }[process.argv[2]]();
 
+    console.info('Input dictionary:');
+    console.info(dict);
     console.info(`Constructing the Transducer.`);
+
     const transducer = new SSFST(dict);
 
     printTransducerInfo(transducer);
