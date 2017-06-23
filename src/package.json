@@ -1,5 +1,5 @@
 {
-    "name": "transducers",
+    "name": "ssfst",
     "version": "1.0.0",
     "description": "",
     "main": "main.js",
@@ -11,22 +11,20 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/deniskyashif/transducers.git"
+        "url": "git+https://github.com/deniskyashif/ssfst.git"
     },
     "keywords": [
         "finite-automata",
-        "transducers"
+        "transducers",
+        "pattern-recognition"
     ],
     "author": "deniskyashif",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/deniskyashif/transducers/issues"
+        "url": "https://github.com/deniskyashif/ssfst/issues"
     },
-    "homepage": "https://github.com/deniskyashif/transducers#readme",
+    "homepage": "https://github.com/deniskyashif/ssfst#readme",
     "devDependencies": {
         "jasmine": "^2.6.0"
-    },
-    "dependencies": {
-        "iron-node": "^3.0.19"
     }
 }

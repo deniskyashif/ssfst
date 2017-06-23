@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const readline = require('readline');
-const SSFST = require('./ssfst/ssfst');
+const SSFST = require('./ssfst');
 
 async function constructSampleDict() {
     return new Promise((resolve, reject) => resolve([

@@ -24,5 +24,5 @@ npm run dict  // construct the transducer using CMU dictionary
 npm test
 ```
 
-## The Algorithm
-["Efficient Dictionary-Based Text Rewriting using Subsequential Transducers" by Stoyan Mihov, Klaus Schulz](https://www.researchgate.net/publication/232005152_Efficient_dictionary-based_text_rewriting_using_subsequential_transducers)
+## References
+* ["Efficient Dictionary-Based Text Rewriting using Subsequential Transducers" by Stoyan Mihov, Klaus Schulz](https://www.researchgate.net/publication/232005152_Efficient_dictionary-based_text_rewriting_using_subsequential_transducers)
