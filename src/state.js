@@ -3,11 +3,10 @@
 const Transition = require('./transition');
 
 module.exports = class State {
-    constructor(isFinal = false) {
-        this.id = Symbol(this);
+    constructor(isFinal = false, output = '') {
         this.isFinal = isFinal;
+        this.output = output;
         this.transitions = new Map();
-        this.output = '';
     }
 
     addTransition(nextState, input, output) {
