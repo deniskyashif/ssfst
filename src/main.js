@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const readline = require('readline');
-const SSFST = require('./ssfst');
+const SSFST = require('./transducer');
 
 async function constructSampleDict() {
     return new Promise((resolve, reject) => resolve([

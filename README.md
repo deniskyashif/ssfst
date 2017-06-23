@@ -1,9 +1,8 @@
 # Subsequential Finite State Transducer
 
-## Dependencies
-```
-nodejs version >= 8.1.1
-```
+## Requirements
+* [git](https://git-scm.com/downloads)
+* [nodejs](https://nodejs.org/en/download/current/) v. >= 8.x
 
 ## Installation
 ```
