@@ -1,4 +1,5 @@
 # Subsequential Finite State Transducer
+[![Build Status](https://travis-ci.org/deniskyashif/ssfst.svg?branch=master)](https://travis-ci.org/deniskyashif/ssfst)
 
 ## Requirements
 * [git](https://git-scm.com/downloads)
