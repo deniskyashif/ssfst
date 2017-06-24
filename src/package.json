@@ -7,7 +7,8 @@
         "start": "node main --default",
         "dict": "node --max_old_space_size=4096 --optimize_for_size main.js --cmu-dict",
         "phones": "node main --cmu-phones",
-        "test": "jasmine"
+        "test": "jasmine",
+        "cover": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/jasmine/bin/jasmine.js"
     },
     "repository": {
         "type": "git",
@@ -25,6 +26,7 @@
     },
     "homepage": "https://github.com/deniskyashif/ssfst#readme",
     "devDependencies": {
+        "istanbul": "^0.4.5",
         "jasmine": "^2.6.0"
     }
 }

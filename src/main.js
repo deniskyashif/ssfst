@@ -79,15 +79,12 @@ async function main() {
     console.info(`Constructing the Transducer.`);
 
     const transducer = new SSFST(dict);
-
     printTransducerInfo(transducer);
 
     readline.createInterface({
         input: process.stdin,
         output: process.stdout
-    }).on('line', input => {
-        console.log(transducer.process(input.trim()));
-    });
+    }).on('line', input => console.log(transducer.process(input.trim())));
 };
 
 main();
