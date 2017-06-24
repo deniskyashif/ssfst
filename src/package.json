@@ -1,14 +1,15 @@
 {
     "name": "ssfst",
     "version": "1.0.0",
-    "description": "",
+    "description": "Construction of a subsequential finite state transducer",
     "main": "main.js",
     "scripts": {
         "start": "node main --default",
         "dict": "node --max_old_space_size=4096 --optimize_for_size main.js --cmu-dict",
         "phones": "node main --cmu-phones",
         "test": "jasmine",
-        "cover": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/jasmine/bin/jasmine.js"
+        "cover": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/jasmine/bin/jasmine.js",
+        "coveralls": "npm run cover && cat ./coverage/lcov.info | node ./node_modules/coveralls/bin/coveralls.js"
     },
     "repository": {
         "type": "git",
@@ -26,6 +27,7 @@
     },
     "homepage": "https://github.com/deniskyashif/ssfst#readme",
     "devDependencies": {
+        "coveralls": "^2.13.1",
         "istanbul": "^0.4.5",
         "jasmine": "^2.6.0"
     }

@@ -1,5 +1,6 @@
 # Subsequential Finite State Transducer
 [![Build Status](https://travis-ci.org/deniskyashif/ssfst.svg?branch=master)](https://travis-ci.org/deniskyashif/ssfst)
+[![Coverage Status](https://coveralls.io/repos/github/deniskyashif/ssfst/badge.svg?branch=master)](https://coveralls.io/github/deniskyashif/ssfst?branch=master)
 
 ## Requirements
 * [git](https://git-scm.com/downloads)
@@ -7,7 +8,7 @@
 
 ## Installation
 ```
-git clone --recursive https://github.com/deniskyashif/ssfst.git
+git clone --recursive https://github.com/deniskyashif/ssfst.git ssfst
 cd ssfst/src
 npm install
 ```

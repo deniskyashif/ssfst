@@ -7,7 +7,6 @@
 const State = require('./state');
 
 module.exports = class SSFST {
-
     constructor(dict) {
         if (!dict) {
             throw new Error('The input dictionary should be defined.');
@@ -74,7 +73,7 @@ module.exports = class SSFST {
             this.complementState(queue.shift(), queue, this.inputAlphabet);
         }
     }
-
+    //TODO: Refactor
     constructTrie(dict) {
         for (let entry of dict) {
             const word = entry.input;
