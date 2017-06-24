@@ -73,33 +73,20 @@ module.exports = class SSFST {
             this.complementState(queue.shift(), queue, this.inputAlphabet);
         }
     }
-    //TODO: Refactor
+
     constructTrie(dict) {
         for (let entry of dict) {
-            const word = entry.input;
             let state = this.startState;
-            let skipIndex = 0;
 
-            while (true) {
-                let transition = state.processTransition(word[skipIndex]);
+            for(let symbol of entry.input) {
+                let transition = state.processTransition(symbol);
 
-                if (!transition) {
-                    break;
-                }
-
-                state = transition.next;
-                skipIndex++;
-            }
-
-            for (; skipIndex < word.length; skipIndex++) {
-                let newState = new State();
-                let symbol = word[skipIndex];
-
-                this.states.push(newState);
-                state.addTransition(newState, symbol, '');
-                state = newState;
-
-                if (!this.inputAlphabet.has(symbol)) {
+                if (transition) {
+                    state = transition.next;
+                } else {
+                    let newState = new State();
+                    state.addTransition(newState, symbol);
+                    state = newState;
                     this.inputAlphabet.add(symbol);
                 }
             }

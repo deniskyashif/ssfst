@@ -9,7 +9,7 @@ module.exports = class State {
         this.transitions = new Map();
     }
 
-    addTransition(nextState, input, output) {
+    addTransition(nextState, input, output = '') {
         this.transitions.set(input, new Transition(output, nextState));
     }
 

@@ -33,4 +33,5 @@ npm run cover
 ```
 
 ## References
-* ["Efficient Dictionary-Based Text Rewriting using Subsequential Transducers" by Stoyan Mihov, Klaus Schulz](https://www.researchgate.net/publication/232005152_Efficient_dictionary-based_text_rewriting_using_subsequential_transducers)
+* ["Efficient Dictionary-Based Text Rewriting using Subsequential Transducers" by S. Mihov, K. Schulz](https://www.researchgate.net/publication/232005152_Efficient_dictionary-based_text_rewriting_using_subsequential_transducers)
+* ["Finitely Subsequential Transducers" by C. Allauzen, M. Mohri](https://www.researchgate.net/publication/263878442_FINITELY_SUBSEQUENTIAL_TRANSDUCERS)

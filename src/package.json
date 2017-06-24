@@ -2,11 +2,11 @@
     "name": "ssfst",
     "version": "1.0.0",
     "description": "Construction of a subsequential finite state transducer",
-    "main": "main.js",
+    "main": "index.js",
     "scripts": {
-        "start": "node main --default",
-        "dict": "node --max_old_space_size=4096 --optimize_for_size main.js --cmu-dict",
-        "phones": "node main --cmu-phones",
+        "start": "node example --default",
+        "dict": "node --max_old_space_size=4096 --optimize_for_size example.js --cmu-dict",
+        "phones": "node example --cmu-phones",
         "test": "jasmine",
         "cover": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/jasmine/bin/jasmine.js",
         "coveralls": "npm run cover && cat ./coverage/lcov.info | node ./node_modules/coveralls/bin/coveralls.js"
@@ -20,7 +20,7 @@
         "transducers",
         "pattern-recognition"
     ],
-    "author": "deniskyashif",
+    "author": "Denis Kyashif <denis.kyashif@gmail.com> deniskyashif.github.io",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/deniskyashif/ssfst/issues"
