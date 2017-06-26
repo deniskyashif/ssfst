@@ -88,6 +88,7 @@ module.exports = class SSFST {
                     state.addTransition(newState, symbol);
                     state = newState;
                     this.inputAlphabet.add(symbol);
+                    this.states.push(state);
                 }
             }
 

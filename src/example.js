@@ -7,6 +7,7 @@ const SSFST = require('./transducer');
 async function constructCountryCodesDict() {
     return new Promise((resolve, reject) => resolve([
         { input: 'acheive', output: 'achieve'},
+        { input: 'achiev', output: 'achieve'},
         { input: 'arguement', output: 'argument'},
         { input: 'independant', output: 'independent'},
         { input: 'posession', output: 'possession'},
