@@ -4,14 +4,13 @@ const fs = require('fs');
 const readline = require('readline');
 const SSFST = require('./transducer');
 
-async function constructSampleDict() {
+async function constructCountryCodesDict() {
     return new Promise((resolve, reject) => resolve([
-        { input: 'ab', output: 'xx' },
-        { input: 'abc', output: 'xyy' },
-        { input: 'bab', output: 'yyx' },
-        { input: 'babc', output: 'yyyy' },
-        { input: 'bbb', output: 'yyz' },
-        { input: 'bbbc', output: 'yzz' }
+        { input: 'acheive', output: 'achieve'},
+        { input: 'arguement', output: 'argument'},
+        { input: 'independant', output: 'independent'},
+        { input: 'posession', output: 'possession'},
+        { input: 'mercy less', output: 'merciless' }
     ]));
 }
 
@@ -58,7 +57,7 @@ async function constructCMUDictPhones(filePath) {
 }
 
 function printTransducerInfo(transducer) {
-    console.log(`Input alphabet: ${[...transducer.inputAlphabet]}`);
+    console.log(`Input alphabet: ${[...transducer.inputAlphabet].sort()}`);
     console.log(`Number of states: ${transducer.states.length}`);
 
     const transitionsCount = transducer.states
@@ -69,7 +68,7 @@ function printTransducerInfo(transducer) {
 
 async function main() {
     const dict = await {
-        '--default': () => constructSampleDict(),
+        '--default': () => constructCountryCodesDict(),
         '--cmu-dict': () => constructCMUDict('./../datasets/cmudict/cmudict.dict'),
         '--cmu-phones': () => constructCMUDictPhones('./../datasets/cmudict/cmudict.phones')
     }[process.argv[2]]();

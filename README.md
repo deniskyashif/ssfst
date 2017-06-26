@@ -4,6 +4,24 @@
 [![Code Climate](https://codeclimate.com/github/deniskyashif/ssfst/badges/gpa.svg)](https://codeclimate.com/github/deniskyashif/ssfst)
 [![npm](https://img.shields.io/npm/l/express.svg)]()
 
+## Example Usage
+```js
+const SSFST = require('transducer');
+
+const spellingCorrector = new SSFST([
+    { input: 'acheive', output: 'achieve'},
+    { input: 'arguement', output: 'argument'},
+    { input: 'independant', output: 'independent'},
+    { input: 'posession', output: 'possession'},
+    { input: 'mercy less', output: 'merciless' }
+]);
+
+console.log(spellingCorrector.process('independant').output); // => "independent"
+console.log(spellingCorrector.process('mercy less arguement').output); // => "merciless argument"
+console.log(spellingCorrector.process('they acheived a lot').output); // => "they achieved a lot"
+
+```
+
 ## Requirements
 * [git](https://git-scm.com/downloads)
 * [nodejs](https://nodejs.org/en/download/current/) v. >= 8.x
@@ -15,7 +33,7 @@ cd ssfst/src
 npm install
 ```
 
-## Run
+## Run the Examples
 ```
 npm start
 npm run phones // construct the transducer using CMU Phones dictionary
