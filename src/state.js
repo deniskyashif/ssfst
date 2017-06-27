@@ -3,7 +3,8 @@
 const Transition = require('./transition');
 
 module.exports = class State {
-    constructor(isFinal = false, output = '') {
+    constructor(id = -1, isFinal = false, output = '') {
+        this.id = id;
         this.isFinal = isFinal;
         this.output = output;
         this.transitions = new Map();

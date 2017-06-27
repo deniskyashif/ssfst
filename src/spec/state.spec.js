@@ -13,11 +13,11 @@ describe('SSFST State Tests', () => {
     });
 
     it('Should have "isFinal" property set to true after invoking the constructor, by providing it with an argument of "true".', () => {
-        expect(new State(true).isFinal).toEqual(true);
+        expect(new State(0, true).isFinal).toEqual(true);
     });
 
     it('Should have "output" property set to "abc" after invoking the constructor, by providing it with an arguments of "true" and "abc".', () => {
-        expect(new State(true, 'abc').output).toEqual('abc');
+        expect(new State(0, true, 'abc').output).toEqual('abc');
     });
 
     it('Should return an instance with a defined "transitions" property with size of 0 after Invoking the constructor, without providing arguments.', () => {

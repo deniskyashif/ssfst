@@ -16,10 +16,9 @@ const spellingCorrector = new SSFST([
     { input: 'mercy less', output: 'merciless' }
 ]);
 
-console.log(spellingCorrector.process('independant').output); // => "independent"
-console.log(spellingCorrector.process('mercy less arguement').output); // => "merciless argument"
-console.log(spellingCorrector.process('they acheived a lot').output); // => "they achieved a lot"
-
+spellingCorrector.process('independant').output; // => "independent"
+spellingCorrector.process('mercy less arguement').output; // => "merciless argument"
+spellingCorrector.process('they acheived a lot').output; // => "they achieved a lot"
 ```
 
 ## Requirements
