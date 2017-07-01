@@ -14,17 +14,22 @@ module.exports = class SSFST {
 
         this.inputAlphabet = new Set();
         this.startState = new State(0);
-        this.states = [this.startState];
+        this.statesCount = 1;
 
         this.constructTrie(dict);
         this.performCanonicalLmlsExtension();
     }
 
+    getStatesCount() {
+        return this.statesCount;
+    }
+
+    getTransitionsCount() {
+        return this.getStatesCount() * this.inputAlphabet.size;
+    }
+
     complementState(triple, queue) {
         const { state, prev, output } = triple;
-
-        state.isFinal = true;
-        state.output = output + prev.output;
 
         for (let symbol of this.inputAlphabet) {
             const transition = state.processTransition(symbol);
@@ -48,6 +53,9 @@ module.exports = class SSFST {
                 }
             }
         }
+
+        state.isFinal = true;
+        state.output = output + prev.output;
     }
 
     performCanonicalLmlsExtension() {
@@ -88,8 +96,9 @@ module.exports = class SSFST {
                     let newState = new State(i++);
                     state.addTransition(newState, symbol);
                     state = newState;
+
                     this.inputAlphabet.add(symbol);
-                    this.states.push(state);
+                    this.statesCount++;
                 }
             }
 

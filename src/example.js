@@ -59,12 +59,8 @@ async function constructCMUDictPhones(filePath) {
 
 function printTransducerInfo(transducer) {
     console.log(`Input alphabet: ${[...transducer.inputAlphabet].sort()}`);
-    console.log(`Number of states: ${transducer.states.length}`);
-
-    const transitionsCount = transducer.states
-          .reduce((aggr, state) =>  aggr + state.transitions.size, 0);
-
-    console.log(`Number of transitions: ${transitionsCount}`);
+    console.log(`Number of states: ${transducer.getStatesCount()}`);
+    console.log(`Number of transitions: ${transducer.getTransitionsCount()}`);
 }
 
 async function main() {

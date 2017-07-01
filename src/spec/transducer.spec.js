@@ -25,6 +25,14 @@ describe('Subsequential Finite State Transducer Tests', () => {
         expect(new SSFST(dict)).toEqual(jasmine.any(SSFST));
     });
 
+    it('Should output correct number of states, when getStatesCount is called', () => {
+        expect(transducer.getStatesCount()).toEqual(10);
+    });
+
+    it('Should output correct number of states, when getStatesCount is called', () => {
+        expect(transducer.getTransitionsCount()).toEqual(30);
+    });
+
     it('Should accept and translate correctly a word from the input dictionary #1', () => {
         const actual = transducer.process('a');
         const expected = { accepted: true, output: '1' };
