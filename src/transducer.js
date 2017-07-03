@@ -36,7 +36,7 @@ module.exports = class SSFST {
             const prevTransition = prev.processTransition(symbol);
 
             if (!transition) {
-                state.addTransition(prevTransition.next, symbol, output + prevTransition.output);
+                state.setTransition(prevTransition.next, symbol, output + prevTransition.output);
             } else {
                 if (transition.next.isFinal) {
                     queue.push({
@@ -67,7 +67,7 @@ module.exports = class SSFST {
             const transition = this.startState.processTransition(symbol);
 
             if (!transition) {
-                this.startState.addTransition(this.startState, symbol, symbol);
+                this.startState.setTransition(this.startState, symbol, symbol);
             } else {
                 queue.push({
                     state: transition.next,
@@ -94,7 +94,7 @@ module.exports = class SSFST {
                     state = transition.next;
                 } else {
                     let newState = new State(i++);
-                    state.addTransition(newState, symbol);
+                    state.setTransition(newState, symbol);
                     state = newState;
 
                     this.inputAlphabet.add(symbol);

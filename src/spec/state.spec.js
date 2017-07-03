@@ -28,12 +28,12 @@ describe('SSFST State Tests', () => {
         expect(new State().output).toEqual('');
     });
 
-    it('Should add a transition when "addTransition" is invoked with valid arguments.', () => {
+    it('Should add a transition when "setTransition" is invoked with valid arguments.', () => {
         const state = new State();
         const nextState = new State(true);
         nextState.output = 'xyz';
         
-        state.addTransition(nextState, 'a', 'b');
+        state.setTransition(nextState, 'a', 'b');
         const transition = state.processTransition('a');
         
         expect(transition.output).toEqual('b');
