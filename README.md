@@ -3,7 +3,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/deniskyashif/ssfst/badge.svg?branch=master)](https://coveralls.io/github/deniskyashif/ssfst?branch=master)
 [![Code Climate](https://codeclimate.com/github/deniskyashif/ssfst/badges/gpa.svg)](https://codeclimate.com/github/deniskyashif/ssfst)
 
-Given an input text, produces a new text by applying a fixed set of rewrite rules. The algorithm uses the "lefrmost largest match" replacement strategy with skips. No overlap between the replaced parts is possible. The time needed to compute the transducer is linear in the size of the input dictionary. For any  text `t` of length `|t|` the time it takes to perform a rewrite is `O(|t|+|t'|)` where `t'` denotes the resulting output string.
+Given an input text, produces a new text by applying a fixed set of rewrite rules. The algorithm uses the "leftmost largest match" replacement strategy with skips. No overlap between the replaced parts is possible. The time needed to compute the transducer is linear in the size of the input dictionary. For any  text `t` of length `|t|` the time it takes to perform a rewrite is `O(|t|+|t'|)` where `t'` denotes the resulting output string.
 
 ## Example Usage
 ```js
