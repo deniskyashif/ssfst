@@ -13,7 +13,7 @@ module.exports = class SSFST {
         }
 
         this.inputAlphabet = new Set();
-        this.startState = new State(0);
+        this.startState = new State();
         this.statesCount = 1;
 
         this.constructTrie(dict);
@@ -83,7 +83,6 @@ module.exports = class SSFST {
     }
 
     constructTrie(dict) {
-        let i = 1;
         for (let entry of dict) {
             let state = this.startState;
 
@@ -93,7 +92,7 @@ module.exports = class SSFST {
                 if (transition) {
                     state = transition.next;
                 } else {
-                    let newState = new State(i++);
+                    let newState = new State();
                     state.setTransition(newState, symbol);
                     state = newState;
 

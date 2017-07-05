@@ -13,7 +13,6 @@ function printTransducerInfo(transducer) {
 function main() {
     const dict = [
         { input: 'acheive', output: 'achieve'},
-        { input: 'achiev', output: 'achieve'},
         { input: 'arguement', output: 'argument'},
         { input: 'independant', output: 'independent'},
         { input: 'posession', output: 'possession'},
