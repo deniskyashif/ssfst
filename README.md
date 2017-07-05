@@ -7,7 +7,7 @@ Given an input text, produces a new text by applying a fixed set of rewrite rule
 
 ## Example Usage
 ```js
-const SSFST = require('transducer');
+const SSFST = require('ssfst');
 
 const spellingCorrector = new SSFST([
     { input: 'acheive', output: 'achieve'},
@@ -17,9 +17,9 @@ const spellingCorrector = new SSFST([
     { input: 'mercy less', output: 'merciless' }
 ]);
 
-spellingCorrector.process('independant').output; // => "independent"
-spellingCorrector.process('mercy less arguement').output; // => "merciless argument"
-spellingCorrector.process('they acheived a lot').output; // => "they achieved a lot"
+spellingCorrector.process('independant'); // => "independent"
+spellingCorrector.process('mercy less arguement'); // => "merciless argument"
+spellingCorrector.process('they acheived a lot'); // => "they achieved a lot"
 ```
 ```js
 const transducer = new SSFST([
@@ -27,7 +27,7 @@ const transducer = new SSFST([
     { input: ' fox ', output: '<a href="https://en.wikipedia.org/wiki/Fox">fox</a>' }
 ]);
 
-transducer.process('The quick brown fox jumped over the lazy dog.').output;
+transducer.process('The quick brown fox jumped over the lazy dog.');
 /* => The quick brown <a href="https://en.wikipedia.org/wiki/Fox">fox</a> jumped over the lazy <a href="https://en.wikipedia.org/wiki/Dog">dog</a>. */
 ```
 
@@ -35,18 +35,16 @@ transducer.process('The quick brown fox jumped over the lazy dog.').output;
 * [git](https://git-scm.com/downloads)
 * [nodejs](https://nodejs.org/en/download/current/) v. >= 8.x
 
-## Installation
+## Clone
 ```
-git clone --recursive https://github.com/deniskyashif/ssfst.git ssfst
-cd ssfst/src
-npm install
+git clone https://github.com/deniskyashif/ssfst.git ssfst
+cd ssfst
+npm i
 ```
 
-## Run the Examples
+## Run the Example
 ```
 npm start
-npm run phones // construct the transducer using CMU Phones dictionary
-npm run dict  // construct the transducer using CMU dictionary
 ```
 
 ## Run the Tests

@@ -1,12 +1,10 @@
 {
     "name": "ssfst",
     "version": "1.0.0",
-    "description": "Construction of a subsequential finite state transducer",
+    "description": "Subsequential Finite State Transducer. Given an input text, produces a new text by applying a fixed set of rewrite rules.",
     "main": "index.js",
     "scripts": {
-        "start": "node example --default",
-        "dict": "node --max_old_space_size=4096 --optimize_for_size example.js --cmu-dict",
-        "phones": "node example --cmu-phones",
+        "start": "node example",
         "test": "jasmine",
         "cover": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/jasmine/bin/jasmine.js",
         "coveralls": "npm run cover && cat ./coverage/lcov.info | node ./node_modules/coveralls/bin/coveralls.js"
@@ -17,8 +15,9 @@
     },
     "keywords": [
         "finite-automata",
-        "transducers",
-        "pattern-recognition"
+        "transducer",
+        "pattern-recognition",
+        "rewrite"
     ],
     "author": "Denis Kyashif <denis.kyashif@gmail.com> deniskyashif.github.io",
     "license": "MIT",

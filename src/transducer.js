@@ -118,7 +118,7 @@ module.exports = class SSFST {
                 output += transition.output;
                 state = transition.next;
             }
-            // read an unknown symbol
+            // in case an unknown symbol is read
             else {
                 output += (state.output + symbol);
                 state = this.startState;

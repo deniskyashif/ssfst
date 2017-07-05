@@ -1,6 +1,6 @@
 'use strict';
 
-const State = require('./../state');
+const State = require('./../src/state');
 
 describe('SSFST State Tests', () => {
 

@@ -5,4 +5,4 @@ module.exports = class Transition {
         this.output = output;
         this.next = next;
     }
-}
+};

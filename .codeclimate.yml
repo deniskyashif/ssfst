@@ -5,5 +5,5 @@ ratings:
     paths:
         - src/**
 exclude_paths:
-    - src/coverage/**/*
-    - src/spec/**/*
+    - /coverage/**/*
+    - /spec/**/*
