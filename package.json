@@ -14,10 +14,11 @@
         "url": "git+https://github.com/deniskyashif/ssfst.git"
     },
     "keywords": [
-        "finite-automata",
+        "nlp",
         "transducer",
-        "pattern-recognition",
-        "rewrite"
+        "finite automata",
+        "pattern recognition",
+        "text rewriting"
     ],
     "author": "Denis Kyashif <denis.kyashif@gmail.com> deniskyashif.github.io",
     "license": "MIT",

@@ -35,6 +35,11 @@ transducer.process('The quick brown fox jumped over the lazy dog.');
 * [git](https://git-scm.com/downloads)
 * [nodejs](https://nodejs.org/en/download/current/) v. >= 8.x
 
+## Install via NPM
+```
+npm i --save ssfst
+```
+
 ## Clone
 ```
 git clone https://github.com/deniskyashif/ssfst.git ssfst
