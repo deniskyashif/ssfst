@@ -114,20 +114,17 @@ module.exports = class SSFST {
         for (let symbol of word) {
             let transition = state.processTransition(symbol);
 
-            if (!transition) {
-                return {
-                    accepted: false,
-                    output: output
-                };
+            if (transition) {
+                output += transition.output;
+                state = transition.next;
             }
-
-            output += transition.output;
-            state = transition.next;
+            // read an unknown symbol
+            else {
+                output += (state.output + symbol);
+                state = this.startState;
+            }
         }
 
-        return {
-            accepted: state.isFinal,
-            output: output + state.output
-        };
+        return output + state.output;
     }
 };

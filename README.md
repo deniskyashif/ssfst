@@ -23,8 +23,8 @@ spellingCorrector.process('they acheived a lot').output; // => "they achieved a 
 ```
 ```js
 const transducer = new SSFST([
-    { input: 'dog', output: '<a href="https://en.wikipedia.org/wiki/Dog">dog</a>' },
-    { input: 'fox', output: '<a href="https://en.wikipedia.org/wiki/Fox">fox</a>' }
+    { input: ' dog ', output: '<a href="https://en.wikipedia.org/wiki/Dog">dog</a>' },
+    { input: ' fox ', output: '<a href="https://en.wikipedia.org/wiki/Fox">fox</a>' }
 ]);
 
 transducer.process('The quick brown fox jumped over the lazy dog.').output;

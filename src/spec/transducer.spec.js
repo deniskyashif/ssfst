@@ -2,7 +2,7 @@
 
 const SSFST = require('./../transducer');
 
-describe('Subsequential Finite State Transducer Tests', () => {
+describe('Subsequential Finite State Transducer Test Suite #1', () => {
     const dict = [
         { input: 'a', output: '1'},
         { input: 'ab', output: '2'},
@@ -25,109 +25,113 @@ describe('Subsequential Finite State Transducer Tests', () => {
         expect(new SSFST(dict)).toEqual(jasmine.any(SSFST));
     });
 
-    it('Should output correct number of states, when getStatesCount is called', () => {
+    it('Should return correct number of states, when getStatesCount is called', () => {
         expect(transducer.getStatesCount()).toEqual(10);
     });
 
-    it('Should output correct number of states, when getStatesCount is called', () => {
+    it('Should return correct number of states, when getStatesCount is called', () => {
         expect(transducer.getTransitionsCount()).toEqual(30);
     });
 
-    it('Should accept and translate correctly a word from the input dictionary #1', () => {
+    it('Should output "1" when the "a" is processed.', () => {
         const actual = transducer.process('a');
-        const expected = { accepted: true, output: '1' };
+        const expected = '1';
         expect(actual).toEqual(expected);
     });
 
-    it('Should accept and translate correctly a word from the input dictionary #2', () => {
+    it('Should output "2" when "ab" is processed', () => {
         const actual = transducer.process('ab');
-        const expected = { accepted: true, output: '2' };
+        const expected = '2';
         expect(actual).toEqual(expected);
     });
 
-    it('Should accept and translate correctly a word from the input dictionary #3', () => {
+    it('Should output "3" when "abcc" is processed.', () => {
         const actual = transducer.process('abcc');
-        const expected = { accepted: true, output: '3' };
+        const expected = '3';
         expect(actual).toEqual(expected);
     });
 
-    it('Should accept and translate correctly a word from the input dictionary #4', () => {
+    it('Should output "4" when "babc" is processed', () => {
         const actual = transducer.process('babc');
-        const expected = { accepted: true, output: '4' };
+        const expected = '4';
         expect(actual).toEqual(expected);
     });
 
-    it('Should accept and translate correctly a word from the input dictionary #5', () => {
+    it('Should output "5" when "c" is processed', () => {
         const actual = transducer.process('c');
-        const expected = { accepted: true, output: '5' };
+        const expected = '5';
         expect(actual).toEqual(expected);
     });
 
-    it('Should reject a word that does not belong to the input dictionary #1', () => {
+    it('Should output "d" when "d" is processed as it\'s not part of the input dict and alphabet', () => {
         const actual = transducer.process('d');
-        expect(actual.accepted).not.toBeTruthy();
+        const expected = 'd';
+        expect(actual).toEqual(expected);
     });
 
-    it('Should reject a word that does not belong to the input dictionary #2', () => {
+    it('Should output "1d" given input "ad".', () => {
         const actual = transducer.process('ad');
-        expect(actual.accepted).not.toBeTruthy();
+        const expected = '1d';
+        expect(actual).toEqual(expected);
     });
 
-    it('Should reject a word that does not belong to the input dictionary #3', () => {
+    it('Should output "db5" given "dbc"', () => {
         const actual = transducer.process('dbc');
-        expect(actual.accepted).not.toBeTruthy();
+        const expected = 'db5';
+        expect(actual).toEqual('db5');
     });
 
-    it('Should reject an input word that contains a symbol that does not belong to the input alphabet #1', () => {
+    it('Should output "1Xb5bb45b" given input "aXbcbbbabccb"', () => {
         const actual = transducer.process('aXbcbbbabccb');
-        expect(actual.accepted).not.toBeTruthy();
+        const expected = '1Xb5bb45b';
+        expect(actual).toEqual(expected);
     });
 
-    it('Should produce a valid output, given a valid input string from the alphabet #1', () => {
+    it('Should output "25bb45b" given input "abcbbbabccb"', () => {
         const actual = transducer.process('abcbbbabccb');
-        const expected = { accepted: true, output: '25bb45b' };
-        expect(expected).toEqual(actual);
+        const expected = '25bb45b';
+        expect(actual).toEqual(expected);
     });
 
-    it('Should produce a valid output, given a valid input string from the alphabet #2', () => {
+    it('Should output "3bb5" given input "abccbbc"', () => {
         const actual = transducer.process('abccbbc');
-        const expected = { accepted: true, output: '3bb5' };
-        expect(expected).toEqual(actual);
+        const expected = '3bb5';
+        expect(actual).toEqual(expected);
     });
 
-    it('Should produce a valid output, given a valid input string from the alphabet #3', () => {
+    it('Should output "b21 given input "baba"', () => {
         const actual = transducer.process('baba');
-        const expected = { accepted: true, output: 'b21' };
-        expect(expected).toEqual(actual);
+        const expected = 'b21';
+        expect(actual).toEqual(expected);
     });
 
-    it('Should produce a valid output, given a valid input string from the alphabet #4', () => {
+    it('Should output "221" given input "ababa"', () => {
         const actual = transducer.process('ababa');
-        const expected = { accepted: true, output: '221' };
-        expect(expected).toEqual(actual);
+        const expected = '221';
+        expect(actual).toEqual(expected);
     });
 
-    it('Should produce a valid output, given a valid input string from the alphabet #5', () => {
+    it('Should output "1352b" given input "aabcccabb"', () => {
         const actual = transducer.process('aabcccabb');
-        const expected = { accepted: true, output: '1352b' };
-        expect(expected).toEqual(actual);
+        const expected = '1352b';
+        expect(actual).toEqual(expected);
     });
 
-    it('Should produce a valid output, given a valid input string from the alphabet #6', () => {
+    it('Should output "b45" given input "bbabcc"', () => {
         const actual = transducer.process('bbabcc');
-        const expected = { accepted: true, output: 'b45' };
-        expect(expected).toEqual(actual);
+        const expected = 'b45';
+        expect(actual).toEqual(expected);
     });
 
-    it('Should produce a valid output, given a valid input string from the alphabet #7', () => {
+    it('Should output "525111" given input "cabcaaa"', () => {
         const actual = transducer.process('cabcaaa');
-        const expected = { accepted: true, output: '525111' };
-        expect(expected).toEqual(actual);
+        const expected = '525111';
+        expect(actual).toEqual(expected);
     });
 
-    it('Should produce a valid output, given a valid input string from the alphabet #8', () => {
+    it('Should output "445" given input "babcbabcc"', () => {
         const actual = transducer.process('babcbabcc');
-        const expected = { accepted: true, output: '445' };
-        expect(expected).toEqual(actual);
+        const expected = '445';
+        expect(actual).toEqual(expected);
     });
 });
