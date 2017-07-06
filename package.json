@@ -1,6 +1,6 @@
 {
     "name": "ssfst",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Subsequential Finite State Transducer. Given an input text, produces a new text by applying a fixed set of rewrite rules.",
     "main": "index.js",
     "scripts": {

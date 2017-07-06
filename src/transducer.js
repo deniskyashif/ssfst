@@ -87,12 +87,12 @@ module.exports = class SSFST {
             let state = this.startState;
 
             for(let symbol of entry.input) {
-                let transition = state.processTransition(symbol);
+                const transition = state.processTransition(symbol);
 
                 if (transition) {
                     state = transition.next;
                 } else {
-                    let newState = new State();
+                    const newState = new State();
                     state.setTransition(newState, symbol);
                     state = newState;
 
@@ -111,7 +111,7 @@ module.exports = class SSFST {
         let state = this.startState;
 
         for (let symbol of word) {
-            let transition = state.processTransition(symbol);
+            const transition = state.processTransition(symbol);
 
             if (transition) {
                 output += transition.output;
