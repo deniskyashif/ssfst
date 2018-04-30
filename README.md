@@ -33,6 +33,10 @@ transducer.process('The quick brown fox jumped over the lazy dog.');
 /* => The quick brown <a href="https://en.wikipedia.org/wiki/Fox">fox</a> jumped over the lazy <a href="https://en.wikipedia.org/wiki/Dog">dog</a>. */
 ```
 
+## Use with TypeScript
+```ts
+import { SSFST } from 'ssfst';
+```
 
 ## Requirements
 * [git](https://git-scm.com/downloads)
