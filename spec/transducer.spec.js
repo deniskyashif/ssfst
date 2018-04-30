@@ -25,12 +25,12 @@ describe('Subsequential Finite State Transducer Test Suite #1', () => {
         expect(new SSFST(dict)).toEqual(jasmine.any(SSFST));
     });
 
-    it('Should return correct number of states, when getStatesCount is called', () => {
-        expect(transducer.getStatesCount()).toEqual(10);
+    it('Should return correct number of states, when stateCount is called', () => {
+        expect(transducer.stateCount()).toEqual(10);
     });
 
-    it('Should return correct number of states, when getStatesCount is called', () => {
-        expect(transducer.getTransitionsCount()).toEqual(30);
+    it('Should return correct number of states, when transitionCount is called', () => {
+        expect(transducer.transitionCount()).toEqual(30);
     });
 
     it('Should output "1" when the "a" is processed.', () => {
