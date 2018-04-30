@@ -14,14 +14,14 @@ module.exports = class SSFST {
 
         this.inputAlphabet = new Set();
         this.startState = new State();
-        this.statesCount = 1;
+        this.numberOfStates = 1;
 
         constructTrie(this, dict);
         performCanonicalLmlsExtension(this);
     }
 
     stateCount() {
-        return this.statesCount;
+        return this.numberOfStates;
     }
 
     transitionCount() {
@@ -65,7 +65,7 @@ function constructTrie(transducer, dict) {
                 state = newState;
 
                 transducer.inputAlphabet.add(symbol);
-                transducer.statesCount++;
+                transducer.numberOfStates++;
             }
         }
 
