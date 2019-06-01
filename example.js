@@ -5,16 +5,16 @@ const SSFST = require('./index');
 
 function printTransducerInfo(transducer) {
     console.log(`Input alphabet: ${[...transducer.inputAlphabet].sort()}`);
-    console.log(`Number of states: ${transducer.getStatesCount()}`);
-    console.log(`Number of transitions: ${transducer.getTransitionsCount()}`);
+    console.log(`Number of states: ${transducer.stateCount()}`);
+    console.log(`Number of transitions: ${transducer.transitionCount()}`);
 }
 
 function main() {
     const dict = [
-        { input: 'acheive', output: 'achieve'},
-        { input: 'arguement', output: 'argument'},
-        { input: 'independant', output: 'independent'},
-        { input: 'posession', output: 'possession'},
+        { input: 'acheive', output: 'achieve' },
+        { input: 'arguement', output: 'argument' },
+        { input: 'independant', output: 'independent' },
+        { input: 'posession', output: 'possession' },
         { input: 'mercy less', output: 'merciless' }
     ];
 

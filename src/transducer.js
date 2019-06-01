@@ -83,7 +83,7 @@ function performCanonicalLmlsExtension(transducer) {
         const transition = transducer.startState.processTransition(symbol);
 
         if (!transition) {
-            this.startState.setTransition(transducer.startState, symbol, symbol);
+            transducer.startState.setTransition(transducer.startState, symbol, symbol);
         } else {
             queue.push({
                 state: transition.next,

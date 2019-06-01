@@ -1,6 +1,6 @@
 {
     "name": "ssfst",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "description": "Subsequential Finite State Transducer. Given an input text, produces a new text by applying a fixed set of rewrite rules.",
     "main": "index.js",
     "engines": {
@@ -30,7 +30,7 @@
     },
     "homepage": "https://github.com/deniskyashif/ssfst#readme",
     "devDependencies": {
-        "coveralls": "^2.13.1",
+        "coveralls": "^3.0.3",
         "istanbul": "^0.4.5",
         "jasmine": "^2.6.0"
     }
