@@ -40,7 +40,7 @@ import { SSFST } from 'ssfst';
 
 ## Requirements
 * [git](https://git-scm.com/downloads)
-* [nodejs](https://nodejs.org/en/download/current/) v. >= 8.x
+* [nodejs](https://nodejs.org/en/download/current/)
 
 ## Install via NPM
 ```
@@ -61,7 +61,7 @@ npm start
 
 ## Run the Tests
 ```
-npm test
+npm t
 ```
 
 ## Code Coverage
