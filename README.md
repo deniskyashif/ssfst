@@ -1,4 +1,5 @@
 # Subsequential Finite State Transducer
+
 [![Build Status](https://github.com/deniskyashif/ssfst/workflows/Node%20CI/badge.svg)](https://github.com/deniskyashif/ssfst/actions?query=workflow%3A%22Node+CI%22)
 [![Coverage Status](https://coveralls.io/repos/github/deniskyashif/ssfst/badge.svg?branch=master)](https://coveralls.io/github/deniskyashif/ssfst?branch=master)
 [![Code Climate](https://codeclimate.com/github/deniskyashif/ssfst/badges/gpa.svg)](https://codeclimate.com/github/deniskyashif/ssfst)
@@ -8,6 +9,7 @@ Given an input text, produces a new text by applying a fixed set of rewrite rule
 Check out the [Online Sandbox](https://npm.runkit.com/ssfst).
 
 ## Example Usage
+
 ```js
 const SSFST = require('ssfst');
 
@@ -23,6 +25,7 @@ spellingCorrector.process('independant'); // => "independent"
 spellingCorrector.process('mercy less arguement'); // => "merciless argument"
 spellingCorrector.process('they acheived a lot'); // => "they achieved a lot"
 ```
+
 ```js
 const transducer = new SSFST([
     { input: ' dog ', output: '<a href="https://en.wikipedia.org/wiki/Dog">dog</a>' },
@@ -34,41 +37,44 @@ transducer.process('The quick brown fox jumped over the lazy dog.');
 ```
 
 ## Use with TypeScript
+
 ```ts
 import { SSFST } from 'ssfst';
 ```
 
 ## Requirements
+
 * [git](https://git-scm.com/downloads)
 * [nodejs](https://nodejs.org/en/download/current/)
 
 ## Install via NPM
-```
-npm i --save ssfst
+
+```sh
+npm i ssfst
 ```
 
-## Clone
-```
-git clone https://github.com/deniskyashif/ssfst.git ssfst
+## Run Locally
+
+```sh
+git clone https://github.com/deniskyashif/ssfst.git
 cd ssfst
 npm i
-```
-
-## Run the Example
-```
-npm start
+npm start # run the example
 ```
 
 ## Run the Tests
-```
+
+```sh
 npm t
 ```
 
 ## Code Coverage
-```
+
+```sh
 npm run cover
 ```
 
 ## References
+
 * ["Efficient Dictionary-Based Text Rewriting using Subsequential Transducers" by S. Mihov, K. Schulz](https://www.researchgate.net/publication/232005152_Efficient_dictionary-based_text_rewriting_using_subsequential_transducers)
 * ["Finitely Subsequential Transducers" by C. Allauzen, M. Mohri](https://www.researchgate.net/publication/263878442_FINITELY_SUBSEQUENTIAL_TRANSDUCERS)
