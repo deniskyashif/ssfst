@@ -1,8 +1,8 @@
 'use strict';
 
-const SSFST = require('./../src/transducer');
+const ssfst = require('./../src/transducer');
 
-describe('Subsequential Finite State Transducer Test Suite #1', () => {
+describe('Subsequential Finite State Transducer from Array', () => {
     const dict = [
         { input: 'a', output: '1'},
         { input: 'ab', output: '2'},
@@ -11,25 +11,17 @@ describe('Subsequential Finite State Transducer Test Suite #1', () => {
         { input: 'c', output: '5'}
     ];
 
-    const transducer = new SSFST(dict);
+    const transducer = ssfst.init(dict);
 
-    it('Invoking the constructor with empty dictionary should create an instance.', () => {
-        expect(new SSFST([])).toEqual(jasmine.any(SSFST));
+    it('Invoking "ssfst.fromArray" with undefined dictionary should throw an error.', () => {
+        expect(() => ssfst.init()).toThrow();
     });
 
-    it('Invoking the constructor with undefined dictionary should throw an error.', () => {
-        expect(() => new SSFST()).toThrow();
-    });
-
-    it('Invoking the constructor by providing a valid dictionary should create a new instance', () => {
-        expect(new SSFST(dict)).toEqual(jasmine.any(SSFST));
-    });
-
-    it('Should return correct number of states, when stateCount is called', () => {
+    it('Should return correct number of states, when stateCount() is called', () => {
         expect(transducer.stateCount()).toEqual(10);
     });
 
-    it('Should return correct number of states, when transitionCount is called', () => {
+    it('Should return correct number of states, when transitionCount() is called', () => {
         expect(transducer.transitionCount()).toEqual(30);
     });
 

@@ -6,55 +6,58 @@
 
 const State = require('./state');
 
-module.exports = class SSFST {
-    constructor(dict) {
-        if (!dict) {
-            throw new Error('The input dictionary should be defined.');
-        }
-
-        this.inputAlphabet = new Set();
-        this.startState = new State();
-        this.numberOfStates = 1;
-
-        constructTrie(this, dict);
-        performCanonicalLmlsExtension(this);
-    }
-
-    stateCount() {
-        return this.numberOfStates;
-    }
-
-    transitionCount() {
-        return this.stateCount() * this.inputAlphabet.size;
-    }
-
-    process(word) {
-        let output = '';
-        let state = this.startState;
-
-        for (let symbol of word) {
-            const transition = state.processTransition(symbol);
-
-            if (transition) {
-                output += transition.output;
-                state = transition.next;
-            }
-            // in case an unknown symbol is read
-            else {
-                output += (state.output + symbol);
-                state = this.startState;
-            }
-        }
-
-        return output + state.output;
-    }        
+module.exports = {
+    init
 };
+
+function init(dict) {
+    if (!dict) {
+        throw new Error('The input dictionary should be defined.');
+    }
+
+    const transducer = {
+        inputAlphabet: new Set(),
+        startState: new State(),
+        numberOfStates: 1
+    };
+
+    constructTrie(transducer, dict);
+    performCanonicalLmlsExtension(transducer);
+
+    return {
+        inputAlphabet: () => [...transducer.inputAlphabet],
+        stateCount: () => transducer.numberOfStates,
+        transitionCount: () => transducer.numberOfStates * transducer.inputAlphabet.size,
+        process: word => process(transducer, word)
+    };
+};
+
+function process(transducer, word) {
+    let output = '';
+    let state = transducer.startState;
+
+    for (let symbol of word) {
+        const transition = state.processTransition(symbol);
+
+        if (transition) {
+            output += transition.output;
+            state = transition.next;
+        }
+        // in case an unknown symbol is read
+        else {
+            output += (state.output + symbol);
+            state = transducer.startState;
+        }
+    }
+
+    return output + state.output;
+}
 
 function constructTrie(transducer, dict) {
     for (let entry of dict) {
         let state = transducer.startState;
 
-        for(let symbol of entry.input) {
+        for (let symbol of entry.input) {
             const transition = state.processTransition(symbol);
 
             if (transition) {
