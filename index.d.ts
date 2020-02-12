@@ -1,14 +1,14 @@
-declare module 'ssfst' {
+interface InputEntry { 
+    input: string, 
+    output: string 
+};
 
-  export class SSFST {
+interface Transducer {
+    inputAlphabet(): Array<string>,
+    stateCount(): number,
+    transitionCount(): number,
+    process(word: string): string
+};
 
-    constructor(dict: Array<{input: string, output: string}>);
-
-    process: (word: string) => string;
-
-    stateCount: () => number;
-
-    transitionCount: () => number;
-  }
-
-}
+export function init(dict: Iterable<InputEntry>): Transducer;
+export function initAsync(dict: AsyncIterable<InputEntry>): Transducer;

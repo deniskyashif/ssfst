@@ -9,7 +9,8 @@ const inputDict = [
     { input: 'mercy less', output: 'merciless' }
 ];
 
-console.log(`Input dictionary:\n${inputDict}`);
+console.log(`Input dictionary:`);
+console.log(inputDict);
 console.log('Constructing the Transducer.');
 
 const transducer = ssfst.init(inputDict);
