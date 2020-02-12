@@ -1,36 +1,47 @@
-/**
- * Subsequential Finite State Transducer
- */
-
-'use strict';
 
 const State = require('./state');
 
 module.exports = {
-    init
+    init: iterableDict => {
+        if (!iterableDict) {
+            throw new Error('The input dictionary should be defined.');
+        }
+    
+        const transducer = createEmptyTransducer();
+        constructTrie(transducer, iterableDict);
+        performCanonicalLmlsExtension(transducer);
+    
+        return apiOf(transducer);
+    },
+    initAsync: async asyncIterableDict => {
+        if (!asyncIterableDict) {
+            throw new Error('The input dictionary should be defined.');
+        }
+
+        const transducer = createEmptyTransducer();
+        await constructTrieAsync(transducer, asyncIterableDict);
+        performCanonicalLmlsExtension(transducer);
+    
+        return apiOf(transducer);
+    }
 };
 
-function init(dict) {
-    if (!dict) {
-        throw new Error('The input dictionary should be defined.');
-    }
-
-    const transducer = {
+function createEmptyTransducer() {
+    return {
         inputAlphabet: new Set(),
         startState: new State(),
         numberOfStates: 1
     };
+}
 
-    constructTrie(transducer, dict);
-    performCanonicalLmlsExtension(transducer);
-
+function apiOf(transducer) {
     return {
         inputAlphabet: () => [...transducer.inputAlphabet],
         stateCount: () => transducer.numberOfStates,
         transitionCount: () => transducer.numberOfStates * transducer.inputAlphabet.size,
         process: word => process(transducer, word)
     };
-};
+}
 
 function process(transducer, word) {
     let output = '';
@@ -43,7 +54,7 @@ function process(transducer, word) {
             output += transition.output;
             state = transition.next;
         }
-        // in case an unknown symbol is read
+        // In case an unknown symbol is read
         else {
             output += (state.output + symbol);
             state = transducer.startState;
@@ -53,28 +64,38 @@ function process(transducer, word) {
     return output + state.output;
 }
 
-function constructTrie(transducer, dict) {
-    for (let entry of dict) {
-        let state = transducer.startState;
-
-        for (let symbol of entry.input) {
-            const transition = state.processTransition(symbol);
-
-            if (transition) {
-                state = transition.next;
-            } else {
-                const newState = new State();
-                state.setTransition(newState, symbol);
-                state = newState;
-
-                transducer.inputAlphabet.add(symbol);
-                transducer.numberOfStates++;
-            }
-        }
-
-        state.isFinal = true;
-        state.output = entry.output;
+function constructTrie(transducer, iterableInputDict) {
+    for (let entry of iterableInputDict) {
+        addTrieEntry(transducer, entry);
     }
+}
+
+async function constructTrieAsync(transducer, asyncIterableInputDict) {
+    for await (let entry of asyncIterableInputDict) {
+        addTrieEntry(transducer, entry);
+    }
+}
+
+function addTrieEntry(trie, entry) {
+    let state = trie.startState;
+
+    for (let symbol of entry.input) {
+        const transition = state.processTransition(symbol);
+
+        if (transition) {
+            state = transition.next;
+        } else {
+            const newState = new State();
+            state.setTransition(newState, symbol);
+            state = newState;
+
+            trie.inputAlphabet.add(symbol);
+            trie.numberOfStates++;
+        }
+    }
+
+    state.isFinal = true;
+    state.output = entry.output;
 }
 
 function performCanonicalLmlsExtension(transducer) {
