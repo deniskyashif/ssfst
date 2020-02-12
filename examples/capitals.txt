@@ -1,0 +1,5 @@
+Berlin,Germany
+Buenos Aires,Argentina
+London,United Kingdom
+Sofia,Bulgaria
+Tokyo, Japan

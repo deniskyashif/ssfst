@@ -2,9 +2,9 @@ const fs = require('fs');
 const readline = require('readline');
 const ssfst = require('../index');
 
-async function* readLinesGen() {
+async function* readLinesGenAsync() {
     const lineReader = readline.createInterface({ 
-        input: fs.createReadStream('./dict.txt')
+        input: fs.createReadStream(__dirname + '/capitals.txt')
     });
 
     for await (const line of lineReader) {
@@ -14,7 +14,7 @@ async function* readLinesGen() {
 }
 
 (async () => {
-    const transducer = await ssfst.initAsync(readLinesGen());
+    const transducer = await ssfst.initAsync(readLinesGenAsync());
     printTransducerInfo(transducer);
 
     readline.createInterface({
