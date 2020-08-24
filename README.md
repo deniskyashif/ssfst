@@ -86,7 +86,7 @@ const transducer = await ssfst.initAsync(readLinesGenAsync());
 
 ## Example: Key-Value Store
 
-Due to its minimality, the subsequential transducer can also be used to efficiently store key-value pairs.
+The subsequential transducer can also be used to efficiently store key-value pairs.
 
 ```js
 const val = transducer.process('Sofia'); // => Bulgaria
@@ -109,7 +109,7 @@ cd ssfst
 npm i
 ```
 
-Sample implementations can be found at `examples/`.
+Sample implementations can be found in [examples/](https://github.com/deniskyashif/ssfst/tree/master/examples).
 
 ## Run the Tests
 
