@@ -119,4 +119,4 @@ npm t
 
 ## References
 
-This implementation follows the construction presented in ["Efficient Dictionary-Based Text Rewriting using Subsequential Transducers" by S. Mihov, K. Schulz](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.71.8495&rep=rep1&type=pdf)
+This implementation follows the construction presented in ["Efficient Dictionary-Based Text Rewriting using Subsequential Transducers" by S. Mihov, K. Schulz](https://dl.acm.org/doi/abs/10.1017/S1351324905004092)
